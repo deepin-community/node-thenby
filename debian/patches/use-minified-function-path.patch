@@ -1,0 +1,47 @@
+Description: The sample function used the minified function copy-pasted directly. Instead use the minified file installed with the package to load the script.
+Author: Nilesh Patra <npatra974@gmail.com>
+Forwarded: not-needed
+Last-Update: 2020-12-12
+--- a/sample.htm
++++ b/sample.htm
+@@ -2,18 +2,15 @@
+ <html>
+ <head>
+     <title></title>
++    <script type="text/javascript" src="/usr/share/nodejs/thenby/thenBy.min.js"></script>
+     <script>
+-        // pasted in:
+-        /*** Copyright 2013 Teun Duynstee Licensed under the Apache License, Version 2.0 ***/
+-        var firstBy=function(){function n(n){return n}function t(n){return"string"==typeof n?n.toLowerCase():n}function r(r,e){if(e="number"==typeof e?{direction:e}:e||{},"function"!=typeof r){var u=r;r=function(n){return n[u]?n[u]:""}}if(1===r.length){var i=r,o=e.ignoreCase?t:n;r=function(n,t){return o(i(n))<o(i(t))?-1:o(i(n))>o(i(t))?1:0}}return-1===e.direction?function(n,t){return-r(n,t)}:r}function e(n,t){return n=r(n,t),n.thenBy=u,n}function u(n,t){var u=this;return n=r(n,t),e(function(t,r){return u(t,r)||n(t,r)})}return e}();
+-
+-        // sample:
+-        var data = [
++        firstBy();
++	 var data = [
+             { id: 7, name:  "Amsterdam", population: 750000, country: "Netherlands" },
+             { id: 12, name: "The Hague", population: 450000, country: "Netherlands" },
+             { id: 43, name: "Rotterdam", population: 600000, country: "Netherlands" },
+             { id: 5, name:  "Berlin", population: 3000000, country: "Germany" },
+-            { id: 42, name: "D�sseldorf", population: 550000, country: "Germany" },
++            { id: 42, name: "Dusseldorf", population: 550000, country: "Germany" },
+             { id: 44, name: "Stuttgard", population: 600000, country: "Germany" },
+         ];
+         function output() {
+@@ -24,7 +21,7 @@
+         }
+         output();
+ 
+-        // first by country, then by pop, should give D�sseldorf first, Amsterdam last
++        // first by country, then by pop, should give Dusseldorf first, Amsterdam last
+         var s = firstBy(function (v1, v2) { return v1.country < v2.country ? -1 : (v1.country > v2.country ? 1 : 0); })
+                  .thenBy(function (v1, v2) { return v1.population - v2.population; });
+         data.sort(s);
+@@ -37,7 +34,7 @@
+         output();
+         
+         // Now we do the same, but using some handy shortcuts
+-        // first by country, then by pop, should give D�sseldorf first, Amsterdam last
++        // first by country, then by pop, should give Dusseldorf first, Amsterdam last
+         var s = firstBy("country").thenBy("population");
+         data.sort(s);
+         output();
