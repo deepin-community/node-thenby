@@ -1,4 +1,14 @@
 #!/usr/bin/make -f
 
+# DH_VERBOSE := 1
+export LC_ALL=C.UTF-8
+
+include /usr/share/dpkg/default.mk
+
 %:
 	dh $@
+
+override_dh_auto_build:
+	dh_auto_build
+	sed -e 's/var firstBy = (/module.exports = (/' thenBy.js > thenBy.module.js
+	terser thenBy.js -o thenBy.min.js
